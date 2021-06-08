@@ -66,21 +66,14 @@ export const theme = {
   mainColor: "#242424",
   backgroundColor: "#fefafb",
 };
-export const Bold = styled.b`
-  font-weight: bold;
-`;
-export const Title = styled.p`
-  color: yellow;
-`;
+
+
 
 export const BarStyled = styled.input`
-  margin-top: 350px;
-  padding: 4rem;
-  display: block;
-  width: 40%;
-  box-sizing: content-box;
-  color: blue;
+ 
+  color: ${(props) => props.color};
   font-weight: ${(props) => props.font};
   font-style: ${(props) => props.fontStyle};
-  text-decoration: ${(props) => props.lineDec}; ;
+  text-decoration: ${(props) => props.lineDec};
+  
 `;

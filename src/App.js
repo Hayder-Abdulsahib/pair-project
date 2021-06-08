@@ -1,6 +1,8 @@
 import "./App.css";
 import { BarStyled } from "./styles";
 import { useState } from "react";
+import {ThemeProvider} from "styled-components";
+import {theme,GlobalStyle} from "./styles"
 
 function App() {
   const [currentFont, setCurrentFont] = useState("normal");
@@ -20,32 +22,62 @@ function App() {
   const [currentDecoration, setCurrentDecoration] = useState("unset");
 
   const ToggleCurrentDecoration = () => {
-    if (setCurrentDecoration === "unset") {
+    if (currentDecoration === "unset") {
       setCurrentDecoration("underline");
     } else setCurrentDecoration("unset");
   };
 
-  const [currentColor, setCurrentColor] = useState("blue");
+  const [currentColor, setCurrentColor] = useState("black");
 
-  const ToggleCurrentColor = () => {
-    if (currentColor === "blue") setCurrentColor("black");
-    else setCurrentColor("blue");
+  const ToggleCurrentColorYellow = () => {
+    setCurrentColor("yellow")
+  };
+  const ToggleCurrentColorBlue = () => {
+    setCurrentColor("blue");
+  };
+  const ToggleCurrentColorRed = () => {
+   setCurrentColor("red");
+  };
+
+  const ToggleCurrentColorBlack = () => {
+   setCurrentColor("black");
+  };
+
+  const ToggleCurrentColorPurple = () => {
+ setCurrentColor("purple");
   };
 
   return (
-    <div>
+    <ThemeProvider theme={theme}>
+      <GlobalStyle/>
+    <div id="container">
+      <div className="row">
+        <div>
+      <p>
+      <button onClick={ToggleCurrentFont}>Bold</button>
+      <button onClick={ToggleCurrentStyle}>Italic</button>
+      <button onClick={ToggleCurrentDecoration}>under line</button>
+      </p>
+      </div>
+      <div>
       <BarStyled
         lineDec={currentDecoration}
         fontStyle={currentStyle}
         font={currentFont}
-        C={currentColor}
+        color={currentColor}
         type="text"
       ></BarStyled>
-      <button onClick={ToggleCurrentFont}>Bold</button>
-      <button onClick={ToggleCurrentStyle}>Italic</button>
-      <button onClick={ToggleCurrentColor}>color</button>
-      {/* <button onClick={ToggleCurrentDecoration}>under line</button> */}
+      </div>
+      <p className="row">
+    <div className="colorBoxyellow" onClick={ToggleCurrentColorYellow}></div>
+    <div className="colorBoxblue" onClick={ToggleCurrentColorBlue}></div>
+    <div className="colorBoxred" onClick={ToggleCurrentColorRed}></div>
+    <div className="colorBoxblack" onClick={ToggleCurrentColorBlack}></div>
+    <div className="colorBoxpurple" onClick={ToggleCurrentColorPurple}></div>
+    </p>
     </div>
+    </div>
+    </ThemeProvider>
   );
 }
 
